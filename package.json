@@ -1,7 +1,7 @@
 {
   "name": "node-for-power-x-gym",
   "version": "1.0.0",
-  "description": "This is used just for manage some api for power-x-gym situse mongodb as database",
+  "description": "This is used just for manage some api for power-x-gym site with node & mongoDB.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index",
