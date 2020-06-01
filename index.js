@@ -102,5 +102,5 @@ app.post('/addUser', (req,res) =>{
     
 })
 
-
-app.listen(process.env.PORT, () => console.log(`Listening from port ${process.env.PORT}`))
+const port = process.env.PORT || 4040
+app.listen(port, () => console.log(`Listening from port ${port}`))
