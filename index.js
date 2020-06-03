@@ -4,6 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId; 
 
 const uri = process.env.DB_PATH
 let client = new MongoClient(uri, { useNewUrlParser: true })
@@ -46,6 +47,25 @@ app.get('/classes', (req,res) =>{
         client.close()
     })
 })
+
+
+app.get('/classes/:id', (req, res) => {
+    const id = req.params.id;
+    client = new MongoClient(uri, { useNewUrlParser: true })
+    client.connect(err =>{
+        const collection = client.db("power-x-gym").collection("classes")
+        collection.find( {"_id" : ObjectId(id) } ).toArray((err, documents) =>{
+            if(err) {
+                console.log(err);
+                res.status(500).send({ message : err })                
+            }
+            else{
+                res.send(documents)
+            }
+        })
+        client.close()
+    })
+});
 
 app.post('/addPricing', (req,res) =>{
     client = new MongoClient(uri, { useNewUrlParser: true })
