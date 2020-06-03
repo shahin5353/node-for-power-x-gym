@@ -60,7 +60,7 @@ app.get('/classes/:id', (req, res) => {
                 res.status(500).send({ message : err })                
             }
             else{
-                res.send(documents)
+                res.send(documents[0])
             }
         })
         client.close()
